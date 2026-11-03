@@ -63,16 +63,16 @@ public class Teleop extends LinearOpMode {
 
         Input input = new Input(gamepad1, gamepad2);
         Movement movement = new Movement(LeftFront, LeftBack, RightFront, RightBack, input);
-        //Intake intake = new Intake(IntakeMotor, input);
+        Intake intake = new Intake(IntakeMotor, input);
 
         waitForStart();
         // pinpoint.resetPosAndIMU();
         // pinpoint.setOffsets(9.5, 0.5, DistanceUnit.CM);
 
         while (opModeIsActive()) {
-            telemetry.addData("head", movement.run());
+            movement.run();
+            intake.run();
             telemetry.update();
-            //intake.run();
         }
     }
 }

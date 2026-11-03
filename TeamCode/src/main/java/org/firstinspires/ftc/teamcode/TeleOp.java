@@ -1,20 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.Blinker;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.IMU;
-import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
-import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
-import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
 
 //Type of Program (Auto or TeleOp)
-@TeleOp (name = "TeleOp", group = "test")
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "TeleOp", group = "test")
 
 
 // INT: 0
@@ -26,7 +15,7 @@ import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
 
 // temp stuff so i can push Iakfjleridjfopvervji;wekf hello ethan
 
-public class Teleop extends LinearOpMode {
+public class TeleOp extends LinearOpMode {
     final int FLFrontDir = -1;
     final int FRFrontDir = 1;
     final int BLFrontDir = 1;

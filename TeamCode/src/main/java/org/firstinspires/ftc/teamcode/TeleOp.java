@@ -47,6 +47,7 @@ public class TeleOp extends LinearOpMode {
         RightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         DcMotor IntakeMotor = hardwareMap.get(DcMotor.class, "Intake");
+        IntakeMotor.setDirection(DcMotor.Direction.REVERSE);
         IntakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         IntakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 

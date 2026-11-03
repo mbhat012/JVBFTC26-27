@@ -62,7 +62,7 @@ public class Teleop extends LinearOpMode {
         IntakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         Input input = new Input(gamepad1, gamepad2);
-        Movement movement = new Movement(LeftFront, LeftBack, RightFront, RightBack, input, pinpoint);
+        Movement movement = new Movement(LeftFront, LeftBack, RightFront, RightBack, input);
         //Intake intake = new Intake(IntakeMotor, input);
 
         waitForStart();

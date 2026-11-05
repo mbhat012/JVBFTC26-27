@@ -68,6 +68,16 @@ public class TeleOp extends LinearOpMode {
             movement.run();
             intake.run();
             output.run();
+
+            telemetry.addData("Move X (left stick X)", "%.2f", input.moveX());
+            telemetry.addData("Move Y (left stick Y)", "%.2f", input.moveY());
+            telemetry.addData("Rotation (right stick X)", "%.2f", input.rotation());
+            telemetry.addData("Slow (B)", input.slow());
+            telemetry.addData("Reset (Y)", input.reset());
+            telemetry.addData("Intake (A)", input.intake());
+            telemetry.addData("Output (X)", input.output());
+            telemetry.addData("Dir set (L trigger)", input.flipDir() ? "B" : "A");
+
             telemetry.update();
         }
     }

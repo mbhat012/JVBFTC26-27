@@ -55,6 +55,11 @@ public class TeleOp extends LinearOpMode {
         Movement movement = new Movement(LeftFront, LeftBack, RightFront, RightBack, input);
         Intake intake = new Intake(IntakeMotor, input);
 
+        DcMotor OutputMotor = hardwareMap.get(DcMotor.class, "Output");
+        OutputMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        OutputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        Output output = new Output(OutputMotor, input);
+
         waitForStart();
         // pinpoint.resetPosAndIMU();
         // pinpoint.setOffsets(9.5, 0.5, DistanceUnit.CM);
@@ -62,6 +67,7 @@ public class TeleOp extends LinearOpMode {
         while (opModeIsActive()) {
             movement.run();
             intake.run();
+            output.run();
             telemetry.update();
         }
     }

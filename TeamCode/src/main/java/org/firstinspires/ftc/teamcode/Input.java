@@ -25,4 +25,11 @@ public class Input {
     public boolean intake() {
         return  gamepad1.a;
     }
+    public boolean flipDir() {
+        return gamepad1.left_trigger > 0.5;
+    }
+    public boolean output() {
+        return gamepad1.x;
+    }
+
 }

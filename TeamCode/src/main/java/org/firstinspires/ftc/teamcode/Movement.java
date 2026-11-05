@@ -10,6 +10,9 @@ public class Movement {
     final double slowMult = 0.2;
     DcMotor LeftFront, LeftBack, RightFront, RightBack;
     Input input;
+    // order: FL, BL, FR, BR
+    final int[] dirA = {-1, 1, 1, 1};    // your current signs
+    final int[] dirB = {-1, -1, 1, 1};   // whole left side reversed
 
     public Movement(DcMotor LF, DcMotor LB, DcMotor RF, DcMotor RB, Input input) {
         LeftFront = LF;
@@ -19,17 +22,19 @@ public class Movement {
         this.input = input;
     }
 
-    private void move(double x, double y, double rot) {
+    private void move(double x, double y, double rot, boolean flip) {
+        int[] d = flip ? dirB : dirA;
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rot), 1);
         double frontLeftPower = (y + x + rot) / denominator;
         double backLeftPower = (y - x + rot) / denominator;
         double frontRightPower = (y - x - rot) / denominator;
         double backRightPower = (y + x - rot) / denominator;
 
-        LeftFront.setPower(FLFrontDir * frontLeftPower);
-        LeftBack.setPower(BLFrontDir * backLeftPower);
-        RightFront.setPower(FRFrontDir * frontRightPower);
-        RightBack.setPower(BRFrontDir * backRightPower);
+
+        LeftFront.setPower(d[0] * frontLeftPower);
+        LeftBack.setPower(d[1] * backLeftPower);
+        RightFront.setPower(d[2] * frontRightPower);
+        RightBack.setPower(d[3] * backRightPower);
     }
 
     public void run() {
@@ -41,6 +46,6 @@ public class Movement {
             y *= slowMult;
             rot *= slowMult;
         }
-        move(x, y, rot);
+        move(x, y, rot, input.flipDir());
     }
 }

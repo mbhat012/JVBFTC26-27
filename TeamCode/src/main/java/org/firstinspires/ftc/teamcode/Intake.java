@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 public class Intake {
-    private final double intakePower = 0.8;
+    private final double intakePower = 1;
     DcMotor intakeMotor;
     Input input;
     public Intake(DcMotor intakeMotor, Input input) {

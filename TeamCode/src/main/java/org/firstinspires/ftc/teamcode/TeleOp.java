@@ -46,6 +46,11 @@ public class TeleOp extends LinearOpMode {
         RightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
+        DcMotor MiddleMotor = hardwareMap.get(DcMotor.class, "Middle");
+        MiddleMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        MiddleMotor.setDirection(DcMotor.Direction.REVERSE);
+        MiddleMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         DcMotor IntakeMotor = hardwareMap.get(DcMotor.class, "Intake");
         IntakeMotor.setDirection(DcMotor.Direction.REVERSE);
         IntakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -53,12 +58,13 @@ public class TeleOp extends LinearOpMode {
 
         Input input = new Input(gamepad1, gamepad2);
         Movement movement = new Movement(LeftFront, LeftBack, RightFront, RightBack, input);
-        Intake intake = new Intake(IntakeMotor, input);
+        Intake intake = new Intake(IntakeMotor, MiddleMotor, input);
 
         DcMotor OutputMotor = hardwareMap.get(DcMotor.class, "Output");
         OutputMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        // OutputMotor.setDirection(DcMotor.Direction.REVERSE);
         OutputMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        Output output = new Output(OutputMotor, input);
+        Output output = new Output(OutputMotor, MiddleMotor, input);
 
         waitForStart();
         // pinpoint.resetPosAndIMU();
@@ -72,11 +78,10 @@ public class TeleOp extends LinearOpMode {
             telemetry.addData("Move X (left stick X)", "%.2f", input.moveX());
             telemetry.addData("Move Y (left stick Y)", "%.2f", input.moveY());
             telemetry.addData("Rotation (right stick X)", "%.2f", input.rotation());
-            telemetry.addData("Slow (B)", input.slow());
+            telemetry.addData("Slow (L1)", input.slow());
             telemetry.addData("Reset (Y)", input.reset());
-            telemetry.addData("Intake (A)", input.intake());
-            telemetry.addData("Output (X)", input.output());
-            telemetry.addData("Dir set (L trigger)", input.flipDir() ? "B" : "A");
+            telemetry.addData("Intake (L2)", input.intake());
+            telemetry.addData("Output (R2)", input.output());
 
             telemetry.update();
         }

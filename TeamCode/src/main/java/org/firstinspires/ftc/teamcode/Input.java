@@ -3,6 +3,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import java.util.*;
 public class Input {
     private Gamepad gamepad1, gamepad2;
+
     public Input(Gamepad g1, Gamepad g2) {
         gamepad1 = g1;
         gamepad2 = g2;
@@ -17,19 +18,17 @@ public class Input {
         return gamepad1.right_stick_x;
     }
     public boolean slow() {
-        return gamepad1.b;
+        return gamepad1.left_bumper;
     }
     public boolean reset() {
         return gamepad1.y;
     }
     public boolean intake() {
-        return  gamepad1.a;
-    }
-    public boolean flipDir() {
-        return gamepad1.left_trigger > 0.5;
+        return  gamepad1.left_trigger > 0.5;
     }
     public boolean output() {
-        return gamepad1.x;
+        return gamepad1.right_trigger > 0.5;
     }
+
 
 }
